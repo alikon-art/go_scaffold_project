@@ -8,7 +8,10 @@ import (
 	"github.com/spf13/viper"
 )
 
-var Port string
+var (
+	Port      string
+	JwtSecret string
+)
 
 func logsinit() {
 	logLevel := viper.GetString("logs.level")
@@ -49,11 +52,17 @@ func gininit() {
 	///todo
 	Port = viper.GetString("program.port")
 }
+
+func jwtinit() {
+	JwtSecret = viper.GetString("program.jwtsecret")
+}
+
 func init() {
 	// 加载程序配置
 	logs.Debug(nil, "Config init...")
 	configload()
 	logsinit()
 	gininit()
+	jwtinit()
 	logs.Debug(nil, "Config init completed")
 }
