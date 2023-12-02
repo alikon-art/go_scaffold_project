@@ -1,0 +1,7 @@
+logs:
+  level: debug
+  timeformat: 2006/1/02 15:04:05
+  showcaller: false
+program:
+  port: 8080
+
