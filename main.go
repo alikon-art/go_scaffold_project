@@ -1,5 +1,7 @@
 package goscaffoldproject
 
-func main() {
+import "fmt"
 
+func main() {
+	fmt.Println("123")
 }
