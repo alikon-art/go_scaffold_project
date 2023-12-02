@@ -1,0 +1,5 @@
+package goscaffoldproject
+
+func main() {
+
+}
