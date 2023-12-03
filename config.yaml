@@ -5,4 +5,6 @@ logs:
 program:
   port: 8080
   jwtsecret: jwtHello
+  username: admin
+  password: 123
 

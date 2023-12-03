@@ -32,15 +32,16 @@ func GenToken(username string) (token string, err error) {
 
 }
 
-func ParseToken(ss string) (*MyCustomClaims, error) {
-	token, err := jwt.ParseWithClaims(ss, &MyCustomClaims{}, func(token *jwt.Token) (interface{}, error) {
+// 传入jwt-token,返回claims对象和error
+func ParseToken(token string) (*MyCustomClaims, error) {
+	tokenStr, err := jwt.ParseWithClaims(token, &MyCustomClaims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(config.JwtSecret), nil // 此处填写用于解析token的secret
 	})
 	if err != nil {
 		logs.Error(nil, "jwt-token解析失败")
 		return nil, err
 	}
-	if claims, ok := token.Claims.(*MyCustomClaims); token.Valid && ok {
+	if claims, ok := tokenStr.Claims.(*MyCustomClaims); tokenStr.Valid && ok {
 		return claims, nil
 	} else {
 		logs.Error(nil, "无效的jwt-token")

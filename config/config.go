@@ -11,6 +11,8 @@ import (
 var (
 	Port      string
 	JwtSecret string
+	Username  string
+	Password  string
 )
 
 func logsinit() {
@@ -38,6 +40,20 @@ func logsinit() {
 
 }
 
+func gininit() {
+	///todo
+	Port = viper.GetString("program.port")
+}
+
+func jwtinit() {
+	JwtSecret = viper.GetString("program.jwtsecret")
+}
+
+func authinit() {
+	Username = viper.GetString("program.username")
+	Password = viper.GetString("program.password")
+}
+
 func configload() {
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
@@ -48,15 +64,6 @@ func configload() {
 	}
 }
 
-func gininit() {
-	///todo
-	Port = viper.GetString("program.port")
-}
-
-func jwtinit() {
-	JwtSecret = viper.GetString("program.jwtsecret")
-}
-
 func init() {
 	// 加载程序配置
 	logs.Debug(nil, "Config init...")
@@ -64,5 +71,6 @@ func init() {
 	logsinit()
 	gininit()
 	jwtinit()
+	authinit()
 	logs.Debug(nil, "Config init completed")
 }
